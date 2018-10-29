@@ -2,6 +2,10 @@ package edu.insightr.gildedrose;
 
 public class Inventory {
 
+    public Item[] getItems() {
+        return items;
+    }
+
     private Item[] items;
 
     public Inventory(Item[] items) {
@@ -35,7 +39,10 @@ public class Inventory {
         for (int i = 0; i < items.length; i++) {
             if (items[i].getName() != "Aged Brie"
                     && items[i].getName() != "Backstage passes to a TAFKAL80ETC concert") {
-                if (items[i].getQuality() > 0) {
+                if(items[i].getName() == "Conjured Mana Cake" && items[i].getQuality() > 1 ){
+                    items[i].setQuality(items[i].getQuality() - 2);
+                }
+                if (items[i].getQuality() > 0 && items[i].getName() != "Conjured Mana Cake") {
                     if (items[i].getName() != "Sulfuras, Hand of Ragnaros") {
                         items[i].setQuality(items[i].getQuality() - 1);
                     }
@@ -50,7 +57,6 @@ public class Inventory {
                                 items[i].setQuality(items[i].getQuality() + 1);
                             }
                         }
-
                         if (items[i].getSellIn() < 6) {
                             if (items[i].getQuality() < 50) {
                                 items[i].setQuality(items[i].getQuality() + 1);
@@ -92,3 +98,15 @@ public class Inventory {
         }
     }
 }
+
+// Add to github and add a Tag
+// create a branch named Visitor
+//use the visitor apttern
+/*
+Visitor myVisitor = new Visitor();
+public void superUpdate(){
+    for(Item item : items){
+        item.accept(myVisitor);
+    }
+}
+*/
